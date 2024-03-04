@@ -1,16 +1,17 @@
-services:
-  front-end:
-    image: softy-pinko/front-end
-    ports:
-      - "9000:9000"
-    build:
-      context: front-end
-      dockerfile: dockerfile
+version: '3'
 
-  back-end:
-    image: softy-pinko/back-end
+services:
+  flask-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: my-flask-app
     ports:
       - "5252:5252"
-    build:
-      context: back-end
-      dockerfile: dockerfile
+    depends_on:
+      - redis-server
+
+  redis-server:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"
