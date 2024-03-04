@@ -1,17 +1,16 @@
-version: '3, or 4'
 services:
-  back-end:
-    build: 
-      context: ./back-end
-      dockerfile: Dockerfile
-    image: softy-pinko-back-end:task4
-    ports:
-      - "5252:5252"
   front-end:
-    build:
-      context: ./front-end
-      dockerfile: Dockerfile
-    image: softy-pinko-front-end:task4
+    image: softy-pinko/front-end
     ports:
       - "9000:9000"
-  depends-on: back-end
+    build:
+      context: front-end
+      dockerfile: dockerfile
+
+  back-end:
+    image: softy-pinko/back-end
+    ports:
+      - "5252:5252"
+    build:
+      context: back-end
+      dockerfile: dockerfile
