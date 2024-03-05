@@ -2,7 +2,7 @@ services:
   front-end:
     image: softy-pinko/front-end
     ports:
-      - "9000:9000"
+      - "9000"
     build:
       context: front-end
       dockerfile: Dockerfile
@@ -10,7 +10,15 @@ services:
   back-end:
     image: softy-pinko/back-end
     ports:
-      - "5252:5252"
+      - "5252"
     build:
       context: back-end
+      dockerfile: Dockerfile
+
+  proxy:
+    image: softy-pinko/proxy
+    ports:
+     - "80:80"
+    build:
+      context: proxy
       dockerfile: Dockerfile
